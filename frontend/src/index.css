@@ -1,0 +1,2143 @@
+/* =============================================================================
+   BloomIndex - design system
+   ============================================================================= */
+
+/* Typography: Inter (UI) + JetBrains Mono (DOIs / code) + Google Sans (brand).
+   All self-hosted — no CDN dependency. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src:
+    url('/fonts/Inter-Variable.woff2') format('woff2-variations'),
+    url('/fonts/Inter-Variable.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src:
+    url('/fonts/Inter-Variable-Ext.woff2') format('woff2-variations'),
+    url('/fonts/Inter-Variable-Ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/GoogleSans-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/GoogleSans-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/GoogleSans-Bold.woff2') format('woff2');
+}
+
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/inter';
+@plugin "@tailwindcss/typography";
+
+/* Tailwind v4 theme registration â€” maps CSS vars to utility classes */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Teal palette */
+  --color-teal-50: var(--teal-50);
+  --color-teal-100: var(--teal-100);
+  --color-teal-200: var(--teal-200);
+  --color-teal-300: var(--teal-300);
+  --color-teal-400: var(--teal-400);
+  --color-teal-500: var(--teal-500);
+  --color-teal-600: var(--teal-600);
+  --color-teal-700: var(--teal-700);
+  --color-teal-800: var(--teal-800);
+
+  /* Cyan palette */
+  --color-cyan-50: var(--cyan-50);
+  --color-cyan-100: var(--cyan-100);
+  --color-cyan-200: var(--cyan-200);
+  --color-cyan-400: var(--cyan-400);
+  --color-cyan-500: var(--cyan-500);
+  --color-cyan-600: var(--cyan-600);
+  --color-cyan-700: var(--cyan-700);
+
+  /* Blue palette */
+  --color-blue-50: var(--blue-50);
+  --color-blue-100: var(--blue-100);
+
+  /* Surface palette */
+  --color-surface-low: var(--surface-low);
+  --color-surface-c: var(--surface-c);
+  --color-surface-high: var(--surface-high);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-on-surface-muted: var(--on-surface-muted);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  /* Role colors */
+  --color-role-chemical: var(--role-chemical);
+  --color-role-species: var(--role-species);
+  --color-role-plant-part: var(--role-plant-part);
+  --color-role-extraction-method: var(--role-extraction-method);
+  --color-role-development-stage: var(--role-development-stage);
+  --color-role-season: var(--role-season);
+  --color-role-location: var(--role-location);
+  --color-role-bioactivity: var(--role-bioactivity);
+  --color-role-analytical-technique: var(--role-analytical-technique);
+  --color-role-isolation-method: var(--role-isolation-method);
+  --color-role-disease: var(--role-disease);
+
+  /* Typography */
+  --font-display: var(--font-inter);
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Border radius */
+  --radius-lg: var(--radius);
+
+  /* Animation */
+  --animate-fade-up: fade-up 0.35s ease-out both;
+  --animate-bar-grow: barGrow 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-spring-in: springIn 0.34s cubic-bezier(0.34, 1.4, 0.5, 1) both;
+  --animate-pulse-ring: pulseRing 2s ease-out infinite;
+  --animate-panel-slide: panelSlide 0.25s ease-out both;
+  --animate-draw-line: drawLine 1.2s ease-out forwards;
+  --animate-load-fill: loadFill 0.8s ease-out both;
+  --animate-paper-enter: paperEnter 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-paper-fade: paperFade 0.35s ease both;
+  --animate-pulse: pulse 2s ease-in-out infinite;
+  --animate-result-in: resultIn 0.32s ease both;
+}
+
+/* =============================================================================
+   DESIGN TOKENS â€” color / type / shape / role
+   ============================================================================= */
+:root {
+  /* Typography */
+  --font-inter:
+    'Inter', 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  --font-roboto: var(--font-inter);
+  --font-google-sans:
+    'Google Sans', 'Inter', 'Inter Variable', -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Layout */
+  --content-max: 1440px;
+  --rail-w: 80px;
+
+  /* Neutrals (zinc-flavored) â€” matches the design's pure-white + zinc ladder */
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-lowest: #ffffff;
+  --surface-low: #fafafa;
+  --surface-c: #f4f4f5;
+  --surface-high: #e4e4e7;
+  --foreground: #18181b;
+  --on-surface: #18181b;
+  --on-surface-variant: #71717a;
+  --on-surface-muted: #a1a1aa;
+  --outline: #a1a1aa;
+  --outline-variant: #e4e4e7;
+
+  /* Material accent palette â€” sampled from the design screenshots */
+  --teal-50: #e0f2f1;
+  --teal-100: #b2dfdb;
+  --teal-200: #80cbc4;
+  --teal-300: #4db6ac;
+  --teal-400: #26a69a;
+  --teal-500: #009688;
+  --teal-600: #00897b;
+  --teal-700: #00796b;
+  --teal-800: #00695c;
+
+  --cyan-50: #e0f7fa;
+  --cyan-100: #b2ebf2;
+  --cyan-200: #80deea;
+  --cyan-400: #26c6da;
+  --cyan-500: #00bcd4;
+  --cyan-600: #00acc1;
+  --cyan-700: #0097a7;
+
+  --blue-50: #e3f2fd;
+  --blue-100: #bbdefb;
+  --blue-400: #42a5f5;
+  --blue-500: #2196f3;
+  --blue-600: #1e88e5;
+  --blue-700: #1976d2;
+  --blue-800: #1565c0;
+  --blue-900: #0d47a1;
+  --blue-A700: #2962ff;
+
+  --green-400: #66bb6a;
+  --green-500: #4caf50;
+  --green-600: #43a047;
+  --green-700: #388e3c;
+  --green-800: #2e7d32;
+
+  --purple-400: #ab47bc;
+  --purple-500: #9c27b0;
+  --purple-600: #8e24aa;
+  --purple-700: #7b1fa2;
+
+  --orange-300: #ffb74d;
+  --orange-400: #ffa726;
+  --orange-500: #ff9800;
+  --pink-400: #ec407a;
+  --pink-500: #e91e63;
+  --pink-600: #d81b60;
+
+  /* Role colors â€” driven by the screenshots' teal / purple / green caps */
+  --role-papers: var(--teal-500);
+  --role-papers-soft: var(--teal-50);
+  --role-papers-under: var(--teal-200);
+  --role-entities: var(--purple-500);
+  --role-entities-soft: #f3e5f5;
+  --role-entities-under: var(--purple-400);
+  --role-journals: var(--green-600);
+  --role-journals-soft: #e8f5e9;
+  --role-journals-under: var(--green-400);
+
+  /* Entity role colors (used in charts, legends, filters) */
+  --role-chemical: #2563eb;
+  --role-species: #16a34a;
+  --role-plant-part: #84cc16;
+  --role-extraction-method: #7c3aed;
+  --role-development-stage: #f97316;
+  --role-season: #eab308;
+  --role-location: #06b6d4;
+  --role-bioactivity: #ec4899;
+  --role-analytical-technique: #64748b;
+  --role-isolation-method: #8b5cf6;
+  --role-disease: #dc2626;
+
+  /* MD3 shape scale */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Reader entity palette â€” single source of truth (lighter / cooler for a
+       white-only app, no dark mode in scope). */
+  --entity-highlight-alpha: 0.18;
+  --entity-highlight-border-alpha: 0.24;
+  --entity-default: #374151;
+  --entity-default-rgb: 55 65 81;
+  --entity-chemical: #2563eb; /* blue-600 */
+  --entity-chemical-rgb: 37 99 235;
+  --entity-species: #16a34a; /* green-600 */
+  --entity-species-rgb: 22 163 74;
+  --entity-plant-part: #84cc16; /* lime-500 */
+  --entity-plant-part-rgb: 132 204 22;
+  --entity-extraction-method: #7c3aed; /* violet-600 */
+  --entity-extraction-method-rgb: 124 58 237;
+  --entity-development-stage: #f97316; /* orange-500 */
+  --entity-development-stage-rgb: 249 115 22;
+  --entity-season: #eab308; /* yellow-500 */
+  --entity-season-rgb: 234 179 8;
+  --entity-location: #06b6d4; /* cyan-500 */
+  --entity-location-rgb: 6 182 212;
+  --entity-bioactivity: #ec4899; /* pink-500 */
+  --entity-bioactivity-rgb: 236 72 153;
+  --entity-analytical-technique: #64748b; /* slate-500 */
+  --entity-analytical-technique-rgb: 100 116 139;
+  --entity-isolation-method: #7c3aed; /* violet-600 */
+  --entity-isolation-method-rgb: 124 58 237;
+  --entity-disease: #dc2626; /* red-600 */
+  --entity-disease-rgb: 220 38 38;
+
+  /* shadcn tokens (kept so existing shadcn components resolve) */
+  --background: #ffffff;
+  --foreground: #18181b;
+  --card: #ffffff;
+  --card-foreground: #18181b;
+  --popover: #ffffff;
+  --popover-foreground: #18181b;
+  --primary: #009688;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #71717a;
+  --radius: 12px;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #18181b;
+  --sidebar-primary: #009688;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #18181b;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #71717a;
+
+  /* shadcn chart palette â€” consumed by JournalBarsChart, EntityDonutChart, etc.
+       Colors intentionally match the screenshot's teal/green/cyan/orange/purple arc. */
+  --chart-1: #009688; /* teal-500 â€” primary brand */
+  --chart-2: #26a69a; /* teal-400 */
+  --chart-3: #4caf50; /* green-500 */
+  --chart-4: #ff9800; /* orange-500 */
+  --chart-5: #9c27b0; /* purple-500 */
+}
+
+/* =============================================================================
+   BASE â€” typography + body + scrollbar
+   ============================================================================= */
+* {
+  border-color: var(--outline-variant);
+}
+
+html {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: var(--on-surface);
+  background: var(--bg);
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-inter);
+  color: var(--on-surface);
+  background: var(--bg);
+  margin: 0;
+  min-height: 100vh;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+
+/* Type scale */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--on-surface);
+    margin: 0;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  h4 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  h5 {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+button {
+  font-family: inherit;
+}
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+::selection {
+  background: rgba(0, 150, 136, 0.18);
+  color: var(--on-surface);
+}
+
+/* Scrollbar */
+.nice-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.nice-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nice-scroll::-webkit-scrollbar-thumb {
+  background: var(--surface-high);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.nice-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--on-surface-muted);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+/* WebKit / Chromium (Chrome, Edge, Safari, Opera) */
+.thin-scrollbar::-webkit-scrollbar,
+.chat-scrollbar::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar,
+textarea::-webkit-scrollbar,
+.chat-section *::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track,
+.chat-scrollbar::-webkit-scrollbar-track,
+.custom-scrollbar::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track,
+.chat-section *::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb,
+.chat-scrollbar::-webkit-scrollbar-thumb,
+.custom-scrollbar::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb,
+.chat-section *::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 9999px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover,
+.chat-scrollbar::-webkit-scrollbar-thumb:hover,
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+textarea::-webkit-scrollbar-thumb:hover,
+.chat-section *::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.thin-scrollbar::-webkit-scrollbar-button,
+.chat-scrollbar::-webkit-scrollbar-button,
+.custom-scrollbar::-webkit-scrollbar-button,
+textarea::-webkit-scrollbar-button,
+.chat-section *::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.thin-scrollbar::-webkit-scrollbar-corner,
+.chat-scrollbar::-webkit-scrollbar-corner,
+.custom-scrollbar::-webkit-scrollbar-corner,
+textarea::-webkit-scrollbar-corner,
+.chat-section *::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox only — standard scrollbar-width (Chromium ignores ::-webkit-scrollbar if scrollbar-width is set, showing OS arrow buttons on Windows) */
+@supports not selector(::-webkit-scrollbar) {
+  .thin-scrollbar,
+  .chat-scrollbar,
+  .custom-scrollbar,
+  textarea,
+  .chat-section * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+  }
+}
+
+/* =============================================================================
+   DESIGN SYSTEM UTILITY CLASSES â€” match BloomIndex.html
+   ============================================================================= */
+
+/* â”€â”€ Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.card {
+  background: var(--bg);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+.card.is-hoverable:hover {
+  border-color: color-mix(
+    in oklab,
+    var(--on-surface) 22%,
+    var(--outline-variant)
+  );
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.card.is-flat {
+  box-shadow: none;
+}
+.card.is-elevated:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* â”€â”€ MD3 elevation â€” exact mockup values â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.md-sys-elevation-level1 {
+  box-shadow:
+    0px 1px 2px rgba(0, 0, 0, 0.3),
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+.md-sys-elevation-level2 {
+  box-shadow:
+    0px 1px 2px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Split-panel elevation â€” lighter shadow for right-side overlays */
+.md-sys-elevation-level2-panel {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--on-surface);
+  background: var(--bg);
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 80ms ease;
+  user-select: none;
+  white-space: nowrap;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--teal-500);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--teal-600);
+}
+
+.btn-ghost {
+  background: transparent;
+}
+.btn-ghost:hover {
+  background: var(--surface-c);
+}
+
+.btn-outline {
+  background: var(--bg);
+  border-color: var(--outline-variant);
+}
+.btn-outline:hover {
+  background: var(--surface-low);
+  border-color: var(--outline);
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+}
+.btn-icon.btn-sm {
+  width: 32px;
+  height: 32px;
+}
+.btn-icon.btn-xs {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-sm {
+  height: 32px;
+  padding: 0 14px;
+  font-size: 13px;
+}
+.btn-xs {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 12px;
+  gap: 4px;
+}
+
+/* â”€â”€ Search shell (collapsed pill â†’ focused squircle) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.search-shell {
+  position: relative;
+  background: var(--bg);
+  border: 1px solid var(--outline-variant);
+  /* Fixed 38px = half collapsed height (~76px). Gives a pill silhouette
+       at rest, but unlike 9999px it's a fixed value â€” no dynamic clamp
+       that shifts when height changes â†’ no sloshing. */
+  border-radius: 38px;
+  transition:
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: text;
+}
+.search-shell.is-focused {
+  border-radius: 24px;
+  border-color: #ff6dba !important;
+  box-shadow:
+    0 0 0 4px color-mix(in oklab, #ff6dba 16%, transparent),
+    0 12px 32px -18px rgba(255, 109, 186, 0.35);
+}
+.search-shell:focus-within:not(.is-focused) {
+  border-color: #ff6dba;
+  box-shadow: 0 0 0 4px color-mix(in oklab, #ff6dba 14%, transparent);
+}
+.search-shell.is-focused .search-trail {
+  opacity: 1;
+}
+.search-shell input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 17.5px;
+  color: var(--on-surface);
+  min-width: 0;
+  caret-color: #000000;
+}
+.search-shell input::placeholder {
+  color: var(--on-surface-muted);
+}
+
+input,
+textarea {
+  caret-color: #000000;
+}
+
+.search-trail {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+/* Pink trail-light on submit */
+.pq-search-trail {
+  position: absolute;
+  left: 36px;
+  right: 36px;
+  bottom: 0;
+  height: 2px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: #ffe0ec;
+  pointer-events: none;
+  animation: pq-trail-fade 0.95s ease-out both;
+  z-index: 1;
+}
+.pq-search-trail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #f8bbd0 25%,
+    #ec407a 50%,
+    #f8bbd0 75%,
+    transparent 100%
+  );
+  filter: drop-shadow(0 0 5px rgba(236, 64, 122, 0.55));
+  animation: pq-trail-slide 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* â”€â”€ Kbd (keyboard shortcut chip) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 22px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--on-surface-variant);
+  background: var(--surface-c);
+  border: 1px solid var(--outline-variant);
+  border-radius: 6px;
+  line-height: 1;
+}
+
+/* â”€â”€ Mono (DOI / code) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* â”€â”€ Pill (source / filter) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-google-sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  background: var(--surface-c);
+  color: var(--on-surface-variant);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+.pill:hover {
+  opacity: 1;
+}
+.pill[data-active='true'] {
+  opacity: 1;
+  background: var(--teal-100);
+  color: var(--teal-800);
+  border-color: var(--teal-500);
+}
+/* Orange (Open Access) pill â€” pill-like with dedicated colors */
+.pill[data-tone='orange'] {
+  background: #fff3e0;
+  color: #e65100;
+  opacity: 0.85;
+}
+.pill[data-tone='orange']:hover {
+  opacity: 1;
+}
+.pill[data-tone='orange'][data-active='true'] {
+  background: #fff3e0;
+  color: #e65100;
+  border-color: #e65100;
+  opacity: 0.85;
+}
+/* Blue (Full Text) pill â€” pill-like with dedicated colors */
+.pill[data-tone='blue'] {
+  background: #e3f2fd;
+  color: #1565c0;
+  opacity: 0.85;
+}
+.pill[data-tone='blue']:hover {
+  opacity: 1;
+}
+.pill[data-tone='blue'][data-active='true'] {
+  background: #e3f2fd;
+  color: #1565c0;
+  border-color: #1565c0;
+  opacity: 0.85;
+}
+
+/* Source pill variants â€” exact mockup colors */
+.pill-europepmc {
+  background: #ecfdf5;
+  color: #059669;
+  opacity: 0.85;
+}
+.pill-europepmc:hover {
+  opacity: 1;
+}
+.pill-europepmc[data-active='true'] {
+  background: #ecfdf5;
+  color: #059669;
+  border-color: #059669;
+  opacity: 0.85;
+}
+.pill-openalex {
+  background: #f1f5f9;
+  color: #334155;
+  opacity: 0.85;
+}
+.pill-openalex:hover {
+  opacity: 1;
+}
+.pill-openalex[data-active='true'] {
+  background: #f1f5f9;
+  color: #334155;
+  border-color: #334155;
+  opacity: 0.85;
+}
+.pill-database {
+  background: #fce4ec;
+  color: #ec407a;
+  opacity: 0.85;
+}
+.pill-database:hover {
+  opacity: 1;
+}
+.pill-database[data-active='true'] {
+  background: #fce4ec;
+  color: #ec407a;
+  border-color: #ec407a;
+  opacity: 0.85;
+}
+
+/* â”€â”€ Result action / icon (ResultCard) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.result-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 2px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--on-surface-variant);
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: var(--font-google-sans);
+  cursor: pointer;
+  transition: color 0.12s;
+  border: none;
+}
+.result-action:hover {
+  color: var(--on-surface);
+}
+
+.result-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--outline-variant);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--on-surface-variant);
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+.result-icon:hover {
+  background: var(--surface-c);
+  color: var(--on-surface);
+  border-color: color-mix(
+    in oklab,
+    var(--on-surface) 22%,
+    var(--outline-variant)
+  );
+}
+
+/* â”€â”€ Rail item (paper-page sticky nav) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.rail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    color 140ms ease;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+}
+.rail-item:hover {
+  background: var(--surface-c);
+  color: var(--on-surface);
+}
+.rail-item[data-active='true'] {
+  background: var(--teal-50);
+  color: var(--teal-700);
+}
+
+/* â”€â”€ Entity index (paper rail accordion) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ent-cat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--on-surface);
+  transition: background 140ms ease;
+}
+.ent-cat:hover {
+  background: var(--surface-c);
+}
+.ent-caret {
+  transition: transform 180ms ease;
+  color: var(--on-surface-variant);
+}
+.ent-cat[data-open='true'] .ent-caret {
+  transform: rotate(90deg);
+}
+.ent-count {
+  font-size: 11px;
+  color: var(--on-surface-variant);
+  font-family: var(--font-google-sans);
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+/* â”€â”€ Paper tool (paper-page action row) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.paper-tool {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: 1px solid var(--outline-variant);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--on-surface-variant);
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+.paper-tool:hover {
+  background: var(--surface-c);
+  color: var(--on-surface);
+  border-color: color-mix(
+    in oklab,
+    var(--on-surface) 22%,
+    var(--outline-variant)
+  );
+}
+
+.paper-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--on-surface-variant);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 140ms ease;
+}
+.paper-back:hover {
+  color: var(--on-surface) !important;
+}
+
+/* â”€â”€ Status icon (OA / full-text badge on result cards) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.status-ic {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  cursor: default;
+  background: transparent;
+}
+
+/* â”€â”€ Dual range slider track â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.dual-range {
+  position: relative;
+  width: 100%;
+  height: 24px;
+}
+.dual-range input[type='range'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+  margin: 0;
+}
+.dual-range input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--teal-500);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: grab;
+  pointer-events: auto;
+  margin-top: -7px;
+}
+.dual-range input[type='range']::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--outline-variant);
+  border-radius: var(--radius-full);
+}
+.dual-range .dual-track {
+  position: absolute;
+  top: 11px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--outline-variant);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+.dual-range .dual-track-progress {
+  position: absolute;
+  height: 100%;
+  background: var(--teal-500);
+  border-radius: var(--radius-full);
+}
+
+/* â”€â”€ Skeleton shimmer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.skel {
+  background: linear-gradient(
+    90deg,
+    var(--surface-c) 0%,
+    var(--surface-high) 50%,
+    var(--surface-c) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--radius-sm);
+  animation: skelShimmer 1.4s ease-in-out infinite;
+}
+
+/* â”€â”€ Bar fill (stat-card / journal bars) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.bar-fill {
+  transform-origin: left;
+  animation: barGrow 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  border-radius: var(--radius-full);
+}
+
+/* â”€â”€ Export option (paper-page modal) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.export-opt {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-google-sans);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 140ms ease;
+}
+.export-opt:hover {
+  background: var(--surface-c);
+}
+@media (hover: none) {
+  /* Touch: tap must not leave a stuck hover pill behind */
+  .export-opt:hover {
+    background: transparent;
+  }
+  .export-opt:active {
+    background: var(--surface-c);
+  }
+}
+
+/* ── Entity flash / pulse (search results hover & navigation) ────────────── */
+.entity-flash {
+  animation: entityFlash 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  border-radius: 4px;
+}
+.entity-pulse {
+  animation: entityPulse 1s ease-in-out infinite !important;
+  border-radius: 4px;
+}
+.entity-mention-active {
+  outline: 2px solid rgba(13, 148, 136, 0.9) !important;
+  outline-offset: 2px !important;
+  box-shadow:
+    0 0 0 4px rgba(13, 148, 136, 0.35),
+    0 0 16px rgba(13, 148, 136, 0.4) !important;
+  border-radius: 4px !important;
+}
+
+@keyframes entityFlash {
+  0% {
+    box-shadow:
+      0 0 0 4px rgba(13, 148, 136, 0.75),
+      0 0 20px rgba(13, 148, 136, 0.5);
+    filter: brightness(1.2);
+  }
+  40% {
+    box-shadow:
+      0 0 0 3px rgba(13, 148, 136, 0.5),
+      0 0 12px rgba(13, 148, 136, 0.3);
+  }
+  100% {
+    box-shadow: none;
+    filter: brightness(1);
+  }
+}
+
+@keyframes entityPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 2px var(--hl-bd, rgba(13, 148, 136, 0.6));
+  }
+  50% {
+    box-shadow: 0 0 0 4px var(--hl-bd, rgba(13, 148, 136, 0.2));
+  }
+}
+
+/* =============================================================================
+   KEYFRAMES
+   ============================================================================= */
+@keyframes pq-trail-slide {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+@keyframes pq-trail-fade {
+  0%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes barGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes pulseRing {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes panelSlide {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes springIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.985);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(1px) scale(1.004);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes skelShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes mapRipple {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.55;
+  }
+  60% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+@keyframes typingDot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+@keyframes chatgptDot {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+@keyframes headerPillFadein {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* â”€â”€ HTML template missing animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes loadFill {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--fill-pct, 100%);
+  }
+}
+@keyframes paperEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes paperFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+@keyframes resultIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes halo-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, -2%) scale(1.08);
+  }
+}
+
+/* â”€â”€ Design-system class selectors (from HTML template) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--on-surface);
+  line-height: 1.4;
+}
+.card-title.sm {
+  font-size: 14px;
+}
+.card-title.lg {
+  font-size: 18px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+  margin-bottom: 12px;
+}
+
+.stat-num {
+  font-size: 32px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--on-surface);
+  line-height: 1;
+}
+.stat-num.sm {
+  font-size: 24px;
+}
+.stat-num.lg {
+  font-size: 40px;
+}
+
+.page-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--surface-c);
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    color 140ms ease;
+  font-size: 16px;
+}
+.page-arrow:hover {
+  background: var(--surface-high);
+  color: var(--on-surface);
+}
+.page-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.paper-enter {
+  animation: paperEnter 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.is-open {
+  display: block;
+}
+
+/* Keyframe utility animation classes â€” matching HTML template naming */
+.entity-hl {
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+/* Helpers (animate-* utility) */
+.animate-fade-up {
+  animation: fadeUp 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.animate-panel-slide {
+  animation: panelSlide 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.animate-spring-in {
+  animation: springIn 0.34s cubic-bezier(0.34, 1.4, 0.5, 1) both;
+}
+.animate-pulse-ring {
+  animation: pulseRing 2.1s ease-out infinite;
+}
+.map-ripple,
+.animate-map-ripple {
+  animation: mapRipple 2.1s ease-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.animate-typing-dot {
+  animation: typingDot 1.2s ease-in-out infinite;
+}
+.animate-chatgpt-dot {
+  animation: chatgptDot 1.2s ease-in-out infinite;
+}
+.animate-header-pill {
+  animation: headerPillFadein 0.22s ease both;
+}
+.animate-bar-grow {
+  animation: barGrow 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.animate-draw-line {
+  animation: drawLine 1.2s ease-out forwards;
+}
+.animate-load-fill {
+  animation: loadFill 0.8s ease-out both;
+}
+.animate-paper-enter {
+  animation: paperEnter 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.animate-paper-fade {
+  animation: paperFade 0.35s ease both;
+}
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+.animate-result-in {
+  animation: resultIn 0.32s ease both;
+}
+.animate-halo {
+  animation: halo-drift 12s ease-in-out infinite;
+}
+
+/* Staggered results entry â€” each .result-row fades up with a small delay. */
+.results-page > * {
+  animation: fadeUp 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.results-page > *:nth-child(1) {
+  animation-delay: 0s;
+}
+.results-page > *:nth-child(2) {
+  animation-delay: 0.03s;
+}
+.results-page > *:nth-child(3) {
+  animation-delay: 0.06s;
+}
+.results-page > *:nth-child(4) {
+  animation-delay: 0.09s;
+}
+.results-page > *:nth-child(5) {
+  animation-delay: 0.12s;
+}
+.results-page > *:nth-child(6) {
+  animation-delay: 0.15s;
+}
+.results-page > *:nth-child(7) {
+  animation-delay: 0.18s;
+}
+.results-page > *:nth-child(8) {
+  animation-delay: 0.21s;
+}
+.results-page > *:nth-child(9) {
+  animation-delay: 0.24s;
+}
+.results-page > *:nth-child(10) {
+  animation-delay: 0.27s;
+}
+
+/* =============================================================================
+   STRUCTURAL â€” header / sidebar / main / app shell
+   ============================================================================= */
+header.app-header {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  min-height: 80px;
+  padding: 0 32px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--outline-variant);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  justify-content: space-between;
+}
+
+#main-content-display {
+  width: 100%;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+/* =============================================================================
+   ENTITY HIGHLIGHT PALETTE (search + reader)
+   ============================================================================= */
+.ent-chemical,
+mark.ner-chemical,
+.legend-chemical {
+  --entity-accent: var(--entity-chemical);
+  --entity-accent-rgb: var(--entity-chemical-rgb);
+}
+.ent-species,
+mark.ner-species,
+.legend-species {
+  --entity-accent: var(--entity-species);
+  --entity-accent-rgb: var(--entity-species-rgb);
+}
+.ent-plant-part,
+mark.ner-plant-part,
+.legend-plant-part {
+  --entity-accent: var(--entity-plant-part);
+  --entity-accent-rgb: var(--entity-plant-part-rgb);
+}
+.ent-extraction-method,
+mark.ner-extraction-method,
+.legend-extraction-method {
+  --entity-accent: var(--entity-extraction-method);
+  --entity-accent-rgb: var(--entity-extraction-method-rgb);
+}
+.ent-development-stage,
+mark.ner-development-stage,
+.legend-development-stage {
+  --entity-accent: var(--entity-development-stage);
+  --entity-accent-rgb: var(--entity-development-stage-rgb);
+}
+.ent-season,
+mark.ner-season,
+.legend-season {
+  --entity-accent: var(--entity-season);
+  --entity-accent-rgb: var(--entity-season-rgb);
+}
+.ent-location,
+mark.ner-location,
+.legend-location {
+  --entity-accent: var(--entity-location);
+  --entity-accent-rgb: var(--entity-location-rgb);
+}
+.ent-bioactivity,
+mark.ner-bioactivity,
+.legend-bioactivity {
+  --entity-accent: var(--entity-bioactivity);
+  --entity-accent-rgb: var(--entity-bioactivity-rgb);
+}
+.ent-analytical-technique,
+mark.ner-analytical-technique,
+.legend-analytical-technique {
+  --entity-accent: var(--entity-analytical-technique);
+  --entity-accent-rgb: var(--entity-analytical-technique-rgb);
+}
+.ent-isolation-method,
+mark.ner-isolation-method,
+.legend-isolation-method {
+  --entity-accent: var(--entity-isolation-method);
+  --entity-accent-rgb: var(--entity-isolation-method-rgb);
+}
+.ent-disease,
+mark.ner-disease,
+.legend-disease {
+  --entity-accent: var(--entity-disease);
+  --entity-accent-rgb: var(--entity-disease-rgb);
+}
+
+/* Inline color in compact contexts (search results / tooltips) */
+:is(
+  .ent-chemical,
+  .ent-species,
+  .ent-plant-part,
+  .ent-extraction-method,
+  .ent-development-stage,
+  .ent-season,
+  .ent-location,
+  .ent-bioactivity,
+  .ent-analytical-technique,
+  .ent-isolation-method,
+  .ent-disease,
+  mark.ner-chemical,
+  mark.ner-species,
+  mark.ner-plant-part,
+  mark.ner-extraction-method,
+  mark.ner-development-stage,
+  mark.ner-season,
+  mark.ner-location,
+  mark.ner-bioactivity,
+  mark.ner-analytical-technique,
+  mark.ner-isolation-method,
+  mark.ner-disease
+) {
+  color: var(--entity-accent, var(--entity-default)) !important;
+}
+
+/* Highlight in prose / paper body */
+.article-prose
+  :is(
+    .ent-chemical,
+    .ent-species,
+    .ent-plant-part,
+    .ent-extraction-method,
+    .ent-development-stage,
+    .ent-season,
+    .ent-location,
+    .ent-bioactivity,
+    .ent-analytical-technique,
+    .ent-isolation-method,
+    .ent-disease,
+    mark.ner-chemical,
+    mark.ner-species,
+    mark.ner-plant-part,
+    mark.ner-extraction-method,
+    mark.ner-development-stage,
+    mark.ner-season,
+    mark.ner-location,
+    mark.ner-bioactivity,
+    mark.ner-analytical-technique,
+    mark.ner-isolation-method,
+    mark.ner-disease
+  ),
+.title-font
+  :is(
+    .ent-chemical,
+    .ent-species,
+    .ent-plant-part,
+    .ent-extraction-method,
+    .ent-development-stage,
+    .ent-season,
+    .ent-location,
+    .ent-bioactivity,
+    .ent-analytical-technique,
+    .ent-isolation-method,
+    .ent-disease,
+    mark.ner-chemical,
+    mark.ner-species,
+    mark.ner-plant-part,
+    mark.ner-extraction-method,
+    mark.ner-development-stage,
+    mark.ner-season,
+    mark.ner-location,
+    mark.ner-bioactivity,
+    mark.ner-analytical-technique,
+    mark.ner-isolation-method,
+    mark.ner-disease
+  ) {
+  background-color: rgb(
+    var(--entity-accent-rgb, var(--entity-default-rgb)) /
+      var(--entity-highlight-alpha)
+  ) !important;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+  font-weight: 500;
+  line-height: inherit;
+  padding: 0 2px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+mark.ner-default {
+  background-color: rgb(
+    var(--entity-default-rgb) / var(--entity-highlight-alpha)
+  ) !important;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  color: var(--entity-default) !important;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: inherit;
+  padding: 1px 5px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+/* Master override when highlights are toggled off: completely clear styling and interaction on title and body */
+.hl-off
+  :is(
+    .ent-chemical,
+    .ent-species,
+    .ent-plant-part,
+    .ent-extraction-method,
+    .ent-development-stage,
+    .ent-season,
+    .ent-location,
+    .ent-bioactivity,
+    .ent-analytical-technique,
+    .ent-isolation-method,
+    .ent-disease,
+    mark.ner-chemical,
+    mark.ner-species,
+    mark.ner-plant-part,
+    mark.ner-extraction-method,
+    mark.ner-development-stage,
+    mark.ner-season,
+    mark.ner-location,
+    mark.ner-bioactivity,
+    mark.ner-analytical-technique,
+    mark.ner-isolation-method,
+    mark.ner-disease,
+    mark.ner-default
+  ) {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  cursor: inherit !important;
+  font-weight: inherit !important;
+  text-decoration: none !important;
+  pointer-events: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* =============================================================================
+   ARTICLE PROSE â€” JATS reader (kept from prior implementation)
+   ============================================================================= */
+.article-prose {
+  color: var(--foreground);
+  line-height: 1.7;
+  font-size: 16px;
+  font-family: var(--font-google-sans);
+  overflow-wrap: break-word;
+}
+.article-prose h1,
+.article-prose h2,
+.article-prose h3,
+.article-prose h4 {
+  font-family: var(--font-google-sans);
+  color: var(--foreground);
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+.article-prose h1 {
+  font-size: 1.6em;
+}
+.article-prose h2 {
+  font-size: 1.35em;
+}
+.article-prose h3 {
+  font-size: 1.15em;
+}
+.article-prose h4 {
+  font-size: 1em;
+}
+.article-prose p {
+  margin: 1em 0;
+}
+.article-prose ul,
+.article-prose ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+.article-prose li {
+  margin: 0.3em 0;
+}
+.article-prose ol {
+  list-style-type: decimal;
+}
+.article-prose ol[type='a' s] {
+  list-style-type: lower-alpha !important;
+}
+.article-prose ol[type='A' s] {
+  list-style-type: upper-alpha !important;
+}
+.article-prose ol[type='i' s] {
+  list-style-type: lower-roman !important;
+}
+.article-prose ol[type='I' s] {
+  list-style-type: upper-roman !important;
+}
+.article-prose .list-label {
+  display: inline-block;
+  min-width: 1.5em;
+  font-weight: 400;
+  color: var(--foreground);
+}
+.article-prose blockquote {
+  border-left: 3px solid var(--teal-500);
+  padding: 0.75em 1.25em;
+  margin: 1.5em 0;
+  background: var(--teal-50);
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+}
+.article-prose em {
+  font-style: italic;
+}
+.article-prose strong {
+  font-weight: 700;
+}
+.article-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--surface-c);
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+}
+.article-prose a[target='_blank'] {
+  color: var(--blue-700);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+.article-prose a[target='_blank']:hover {
+  border-bottom-color: var(--blue-700);
+}
+
+.article-prose img,
+.article-prose svg,
+.article-prose video {
+  max-width: 100%;
+  height: auto;
+}
+
+.article-prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  word-break: normal;
+  background: var(--surface-c);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.article-prose table {
+  max-width: 100%;
+}
+
+/* =============================================================================
+   JATS TABLES
+   ============================================================================= */
+.jats-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: var(--foreground);
+  table-layout: fixed;
+}
+.jats-table th {
+  background: var(--surface-low);
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--outline-variant);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+  white-space: nowrap;
+  max-width: 300px;
+}
+.jats-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--surface-c);
+  line-height: 1.5;
+  max-width: 300px;
+  white-space: normal;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jats-table tr:hover {
+  background: var(--surface-low);
+}
+
+.table-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+.table-scroll-container::before,
+.table-scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+.table-scroll-container::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), transparent);
+}
+.table-scroll-container::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.9), transparent);
+}
+
+/* =============================================================================
+   UTILITY OVERRIDES
+   ============================================================================= */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--surface-high);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--outline);
+}
+
+.title-font {
+  font-family: var(--font-inter);
+}
+
+/* =============================================================================
+   TAILWIND v4 LAYER BASE (must come AFTER :root tokens for utilities to win)
+   ============================================================================= */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+/* =============================================================================
+   UPLOAD HERO UTILITIES
+   ============================================================================= */
+@layer components {
+  .dot-pattern {
+    background-image: radial-gradient(var(--surface-high) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .upload-dashed {
+    border-radius: 20px;
+  }
+
+  .pulse-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(228, 228, 231, 0.5);
+  }
+
+  .sidebar-transition {
+    transition:
+      width 0.18s cubic-bezier(0.2, 0, 0, 1),
+      min-width 0.18s cubic-bezier(0.2, 0, 0, 1),
+      max-width 0.18s cubic-bezier(0.2, 0, 0, 1);
+    overflow: hidden;
+    will-change: width;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .sidebar-mini-view {
+    display: none;
+    animation: sidebar-fade-in 0.15s cubic-bezier(0.2, 0, 0, 1);
+  }
+  .sidebar-content {
+    display: flex;
+    animation: sidebar-fade-in 0.15s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  @keyframes sidebar-fade-in {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .sidebar-collapsed {
+    width: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+  }
+  .sidebar-collapsed .sidebar-content {
+    display: none !important;
+  }
+  .sidebar-collapsed .sidebar-mini-view {
+    display: flex !important;
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 2.5s ease-in-out infinite;
+  }
+}
+
+@keyframes border-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes typingDot {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.animate-typing-dot {
+  animation: typingDot 1.2s ease-in-out infinite;
+}
+
+/* ── PlantOriginMap country paths (react-simple-maps v3 has no
+   style={{default,hover,pressed}} prop — states live in CSS) ── */
+.pq-map-country {
+  fill: #ffffff;
+  stroke: #d8e8ee;
+  stroke-width: 0.6px;
+  outline: none;
+  transition:
+    fill 120ms ease,
+    stroke 120ms ease;
+}
+.pq-map-country:hover {
+  fill: #ebf8fb;
+  stroke: #9de4ef;
+  stroke-width: 0.8px;
+}
+.pq-map-country:active {
+  fill: #ebf8fb;
+  outline: none;
+}

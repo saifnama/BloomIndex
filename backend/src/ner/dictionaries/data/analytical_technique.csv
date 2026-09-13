@@ -1,0 +1,140 @@
+term,synonyms
+gas chromatography,glc|gc|capillary gc
+gas chromatography-mass spectrometry,gcms|gc-ms|gc-mass spectrometry|capillary gas chromatography-mass spectrometry|gc coupled with mass spectrometry|gas chromatography-mass spectroscopy|gas chromatography coupled to mass spectrometry
+gas chromatography-flame ionization detection-mass spectrometry,gc-fid-ms|gc-fid-itms|gas chromatography coupled with flame ionization detector and ion trap mass spectrometry
+gas chromatography-flame ionization detector,gcfid|gc-fid|gas chromatography coupled to flame ionisation detector|gc-flame ionization detector|gas chromatography-flame ionization detection|gas chromatography with flame ionization detector|flame ionization gas chromatography
+gas chromatography-isotope ratio mass spectrometry,gc-irms
+gas chromatography-time of flight mass spectrometry,gc-tof-ms
+high performance liquid chromatography,hplc
+ultra high performance liquid chromatography,uhplc
+liquid chromatography-mass spectrometry,lc-ms
+liquid chromatography-nuclear magnetic resonance,lc-nmr
+flash column chromatography,flash chromatography
+column chromatography,
+thin layer chromatography,tlc|thin-layer chromatography
+high performance thin layer chromatography,hptlc
+high speed counter current chromatography,hsccc
+ion exchange chromatography,iec
+ion chromatography,
+gel permeation chromatography,gpc
+gel filtration chromatography,gfc
+size exclusion chromatography,
+nuclear magnetic resonance,nmr
+correlation spectroscopy,cosy
+nuclear overhauser effect spectroscopy,noesy
+heteronuclear single quantum coherence,hsqc
+heteronuclear multiple quantum coherence,hmqc
+heteronuclear multiple bond correlation,hmbc
+mass spectrometry,
+high resolution mass spectrometry,hrms
+matrix assisted laser desorption ionization,maldi
+matrix assisted laser desorption ionization mass spectrometry,maldi-ms
+matrix assisted laser desorption ionization time-of-flight mass spectrometry,maldi-tof|maldi-tof ms
+direct analysis in real time,
+electrospray ionization,
+electrospray ionization mass spectrometry,esi-ms
+polyacrylamide gel electrophoresis,
+sodium dodecyl sulfate polyacrylamide gel electrophoresis,sds-page
+pulsed-field gel electrophoresis,pfge
+agarose gel electrophoresis,gel electrophoresis
+capillary electrophoresis,
+western blotting,western blot
+eastern blotting,eastern blot
+southern blotting,southern blot
+northern blotting,northern blot
+infrared spectroscopy,
+fourier transform infrared spectroscopy,ftir|ft-ir
+near infrared spectroscopy,
+attenuated total reflectance,
+attenuated total reflectance fourier transform infrared spectroscopy,atr-ftir
+ultraviolet visible spectroscopy,uv-vis|uv-visible spectroscopy
+x-ray diffraction,xrd
+scanning electron microscopy,sem
+transmission electron microscopy,tem
+raman spectroscopy,
+surface enhanced raman spectroscopy,sers
+dpph assay,dpph
+reducing power assay,reducing power
+ferric reducing antioxidant power,frap|ferric ion reducing antioxidant power
+oxygen radical absorbance capacity,orac
+trolox equivalent antioxidant capacity,teac
+total radical trapping antioxidant parameter,trap
+abts assay,abts
+minimum inhibitory concentration,minimum inhibitory concentrations|minimum inhibitory assays|minimum inhibition concentration|minimal inhibitory concentrations
+acoustic resonance spectroscopy,
+affinity chromatography,
+aqueous normal-phase chromatography,
+arc emission spectroscopy,
+atomic absorption spectroscopy,
+atomic emission spectroscopy,
+auger electron spectroscopy,
+cavity ring-down spectroscopy,
+chiral chromatography,
+circular dichroism spectroscopy,
+coherent anti-stokes raman spectroscopy,
+cold vapour atomic fluorescence spectroscopy,
+counter-current chromatography,
+deep-level transient spectroscopy,
+dielectric spectroscopy,
+displacement chromatography,
+dual-polarization interferometry,
+electron energy loss spectroscopy,
+electron paramagnetic resonance spectroscopy,
+expanded bed adsorption chromatography,
+fast protein liquid chromatography,
+flame ionization detector,
+force spectroscopy,
+hadron spectroscopy,
+headspace gas chromatography,
+hydrophobic interaction chromatography,
+hyperspectral imaging,
+inelastic electron tunneling spectroscopy,
+inelastic neutron scattering,
+ion-exchange chromatography,
+laser spectroscopy,
+laser-induced breakdown spectroscopy,
+laser-induced plasma spectrometry,
+liquid chromatography,
+molecular sieve chromatography,
+mr spectroscopy,
+multivariate optical computing,
+mössbauer spectroscopy,mossbauer spectroscopy
+neutron spin echo spectroscopy,
+normal-phase chromatography,
+olfactory evaluation,
+paper chromatography,
+periodic counter-current chromatography,
+photoacoustic spectroscopy,
+photoemission spectroscopy,
+photothermal spectroscopy,
+planar chromatography,
+pump probe spectroscopy,
+pyrolysis,
+raman optical activity spectroscopy,
+reversed-phase chromatography,
+saturated absorption spectroscopy,
+scanning tunneling spectroscopy,
+simulated moving-bed chromatography,
+size-exclusion chromatography,
+spark emission spectroscopy,
+spin noise spectroscopy,
+supercritical fluid chromatography,
+thermal infrared spectroscopy,
+time-resolved spectroscopy,
+time-stretch spectroscopy,
+transient grating spectroscopy,
+two-dimensional chromatography,
+ultraviolet photoelectron spectroscopy,
+vibrational circular dichroism spectroscopy,
+x-ray photoelectron spectroscopy,
+two-dimensional correlation spectroscopy,
+ultra-performance liquid chromatography-mass spectrometry,uplc-ms
+solid phase microextraction coupled with gas chromatography-mass spectrometry,spme-gc-ms
+phosphomolybdenum assay,
+electron ionization mass spectrometry,ei-ms
+high-resolution gas chromatography-mass spectrometry,hrgc-ms|high resolution capillary gas chromatography coupled to mass spectrometry
+high-resolution gas chromatography,hrgc|high resolution capillary gas chromatography
+multidimensional capillary gas chromatography,mdgc
+chiral gas chromatography,chiral gc
+high-performance liquid chromatography coupled with diode array detection and time-of-flight mass spectrometry,hplc-dad-tof
+gas chromatography-olfactometry,gc-o

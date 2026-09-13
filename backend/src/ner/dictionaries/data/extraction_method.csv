@@ -1,0 +1,38 @@
+term,synonyms
+# === TRADITIONAL/CONVENTIONAL ===,
+maceration,macerated|soaking|simple maceration
+percolation,percolated|percolator|continuous percolation
+infusion,infused|hot infusion
+decoction,decocted|boiling extraction
+soxhlet extraction,soxhlet|hot continuous extraction
+reflux extraction,
+cold press,cold-pressed|mechanical pressing
+enfleurage,cold enfleurage|hot enfleurage
+superficial extraction,
+solvent extraction,
+# === DISTILLATION ===,
+distillation,distilled
+steam distillation,steam-distilled|steam-distillation|steam distilled
+hydrodistillation,hydro-distilled|water distillation|hydro-distillation|hydrodistilled|hydro distillation
+vacuum distillation,vacuum-distilled|reduced pressure distillation
+molecular distillation,molecular-distilled|short path distillation
+fractional distillation,
+# === MODERN/GREEN ===,
+microwave assisted extraction,mae|microwave extraction
+ultrasound assisted extraction,ultrasonic extraction|sonication|ultrasonication
+supercritical fluid extraction,supercritical extraction
+supercritical co2 extraction,sc-co2|supercritical carbon dioxide|co2 sfe|sfe-co2
+pressurized liquid extraction,pressurized solvent extraction
+accelerated solvent extraction,accelerated solvent
+subcritical water extraction,hot water extraction
+enzyme assisted extraction,enzyme extraction
+pulsed electric field extraction,pulse electric field
+# === ADVANCED/HYBRID ===,
+microwave assisted hydrodistillation,mahd|microwave-hydrodistillation|microwave-assisted hydro-distillation|microwave-assisted hydrodistillation|mwhd
+solvent free microwave extraction,sfme|microwave solvent-free
+ultrasound assisted hydrodistillation,uahd|ultrasonic hydrodistillation
+headspace solid phase microextraction,hs-spme|headspace spme|spme
+headspace extraction,
+microdistillation,
+micro steam distillation-solid-phase microextraction,msd-spme
+solid phase microextraction,solid-phase microextraction|spme

@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Databases — never commit runtime DBs
+*.sqlite*
+*.db
+
+# Runtime data
+#   backend/src/ner/dictionaries/data/
+#   backend/evals/**/data/
+/data/
+tmp/
+knowledge_base/
+*.log
+*.pid
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Frontend
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.nox/
+test-results/
+playwright-report/
+
+# Eval run artifacts
+backend/evals/**/.checkpoints/
+
+# Typecheck / lint caches
+.ruff_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,199 @@
+term,synonyms
+# === LEAVES ===,
+leaf,leaves
+leaflet,leaflets
+petiole,petioles
+leaf sheath,leaf sheaths
+leaf blade,leaf blades
+leaf lamina,leaf lamina
+frond,fronds
+node,nodes
+internode,internodes
+stipule,stipules
+rachis,rachises
+leaf primordium,leaf primordia
+primordium,primordia
+# === BUDS ===,
+bud,buds
+terminal bud,terminal buds
+axillary bud,axillary buds
+adventitious bud,adventitious buds
+# === FLOWERS ===,
+flower,flowers
+perianth,perianths
+nectary,nectaries
+floral primordium,floral primordia
+# === FRUITS ===,
+fruit,fruits
+berry,berries
+drupe,drupes
+pome,pomes
+follicle,follicles
+capsule,capsules
+pod,pods
+pericarp,pericarps
+caryopsis,caryopses
+grain,grains
+# === FRUIT LAYERS ===,
+exocarp,exocarps
+epicarp,epicarps
+peel,peels
+husk,husks
+mesocarp,mesocarps
+endocarp,endocarps
+# === SEEDS ===,
+seed,seeds
+kernel,kernels
+hull,hulls
+testa,testas
+seed coat,seed coats
+cotyledon,cotyledons
+radicle,radicles
+embryo,embryos
+endosperm,endosperms
+hypocotyl,hypocotyls
+epicotyl,epicotyls
+hilum,
+micropyle,micropyles
+funiculus,funiculi
+aril,arils
+placenta,placentas
+pellicle,pellicles
+# === ROOTS ===,
+root,roots
+taproot,taproots
+fibrous root,fibrous roots
+adventitious root,adventitious roots
+rootlet,rootlets
+root hair,root hairs
+rootstock,rootstocks
+lateral root,lateral roots
+root tip,root tips
+root cap,root caps
+root epidermis,root epidermises
+root cortex,root cortices
+endodermis,endodermises
+pericycle,pericycles
+root nodule,root nodules
+nodule,nodules
+# === UNDERGROUND STRUCTURES ===,
+rhizome,rhizomes
+tuber,tubers
+corm,corms
+bulb,bulbs
+stolon,stolons
+geophyte,geophytes
+# === STEMS & TRUNK ===,
+stem,stems
+shoot,shoots
+pith,piths
+terminal branch,terminal branches
+branchlet,branchlets
+trunk,trunks
+bole,boles
+# === BARK & WOOD ===,
+bark,barks
+stem bark,stem barks|stem-bark
+trunk bark,trunk barks
+root bark,root barks
+inner bark,inner barks
+cork,corks
+wood,woods
+heartwood,heartwoods
+sapwood,sapwoods
+cambium,cambiums
+cork cambium,cork cambiums
+xylem,xylems
+phloem,phloems
+vascular tissue,vascular tissues
+vascular bundle,vascular bundles
+wood ray,wood rays
+pith ray,pith rays
+lenticel,lenticels
+# === LEAF ANATOMY ===,
+epidermis,epidermises
+stomata,stomata
+stoma,stomata
+guard cell,guard cells
+palisade mesophyll,palisade
+spongy mesophyll,
+bundle sheath,bundle sheaths
+mesophyll,mesophyll
+trichome,trichomes
+glandular trichome,glandular trichomes
+# === TISSUE TYPES ===,
+parenchyma,parenchymas
+collenchyma,collenchymas
+sclerenchyma,sclerenchymas
+cortex,cortices
+aerenchyma,aerenchymas
+# === CONES ===,
+cone,cones
+strobile,strobiles
+# === INFLORESCENCE ===,
+inflorescence,inflorescences
+raceme,racemes
+panicle,panicles
+cyme,cymes
+glomerulus,glomeruli
+capitulum,capitula
+catkin,catkins
+# === FLOWER STALKS ===,
+pedicel,pedicels
+peduncle,peduncles
+flower stalk,flower stalks|stalks
+# === FLOWER ANATOMY ===,
+petal,petals
+sepal,sepals
+calyx,calyxes
+corolla,corollas
+stamen,stamens
+anther,anthers
+anther lobe,anther lobes
+filament,filaments
+pollen,pollen
+pollen grain,pollen grains
+pollen tube,pollen tubes
+pollen sac,pollen sacs
+microspore,microspores
+pistil,pistils
+ovary,ovaries
+gynoecium,gynoecia
+androecium,androecia
+aerial part,aerial parts
+flowering top,flowering tops
+# === OTHER ===,
+bract,bracts
+bracteole,bracteoles
+spathe,spathes
+ligule,ligules
+involucre,involucres
+# === SPECIALIZED STRUCTURES ===,
+cladode,cladodes
+phylloclade,phylloclades
+thorn,thorns
+spine,spines
+# === CROWN & ROSETTE ===,
+crown,crowns
+rosette,rosettes
+# === REPRODUCTIVE ===,
+receptacle,receptacles
+utricle,utricles
+achene,achenes
+# === LIFE CYCLE ===,
+sporophyte,sporophytes
+gametophyte,gametophytes
+# === GROWTH ===,
+meristem,meristems
+apical meristem,apical meristems
+shoot apical meristem,shoot apical meristems
+root apical meristem,root apical meristems
+lateral meristem,lateral meristems
+intercalary meristem,intercalary meristems
+procambium,procambia
+protoderm,protoderms
+phyllode,phyllodes
+cuticle,
+twigs,
+ripe fruits,
+aerial tissues,

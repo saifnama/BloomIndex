@@ -1,0 +1,9 @@
+# These are eval-only dependencies, so install them separately from the runtime with `uv pip install --python
+# .venv/Scripts/python.exe -r backend/requirements-eval.txt`. They are kept out of pyproject.toml because ragas
+# depends on instructor, whose openai and typer ranges conflict with the runtime pins (openai==3.13 and docling's
+# typer>=0.12.5); this was confirmed when `uv lock` failed on every instructor release against openai>=3.13, so do
+# not merge them back without rechecking. ragas backs backend/evals/rag and nervaluate backs backend/evals/ner, and
+# nervaluate itself is conflict-free but stays here so that eval setup remains a single command.
+
+ragas==0.4.3
+nervaluate==1.2.1

@@ -1,0 +1,35 @@
+term,synonyms
+# === TEMPERATE SEASONS ===,
+spring,spring season|springtime|vernal season
+summer,summer season|summertime
+autumn,autumn season|fall season
+winter,winter season|wintertime
+# === TROPICAL/MONSOON SEASONS ===,
+monsoon,monsoon season|wet season
+rainy season,rainy|monsoon period
+dry season,
+# === MONTHS ===,
+january,
+february,
+march,
+april,
+june,
+july,
+august,
+september,
+october,
+november,
+december,
+# === SEASON COMBINATIONS ===,
+spring-summer,spring and summer|summer-spring
+summer-autumn,summer and autumn|late summer
+autumn-winter,autumn and winter|fall-winter
+# === GROWING SEASONS ===,
+growing season,growing period|vegetative season
+harvest season,harvest time|harvest period|collection season|harvesting|harvest seasons|harvested|harvesting period|harvesting periods
+# === TROPICAL REGIONS ===,
+pre-monsoon,pre-rainy|before monsoon|early rainy
+post-monsoon,post-rainy|after monsoon|late rainy
+mid-autumn,
+mid-winter,
+wet season,wet seasons
