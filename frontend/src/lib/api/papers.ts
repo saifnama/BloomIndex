@@ -142,12 +142,14 @@ export const dbApi = {
   async getPapers(
     limit: number = 50,
     offset: number = 0,
-    country?: string,
+    country?: string | string[],
     query?: string,
     year?: number | string,
   ): Promise<DbPaperList | DbPaperRow[]> {
     const response = await api.get('/paper/db/list', {
       params: { limit, offset, country, query, year },
+      // Repeat array params as ?country=a&country=b for FastAPI lists.
+      paramsSerializer: { indexes: null },
     });
     return response.data;
   },

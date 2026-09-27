@@ -30,7 +30,7 @@ const WORLD_GEO_URL = '/world-topo-50m.json';
 
 interface Props {
   data: { name: string; value: number }[];
-  onCountryClick?: (name: string) => void;
+  onCountryClick?: (name: string, rawNames: string[]) => void;
   height?: number;
 }
 
@@ -77,31 +77,46 @@ export function PlantOriginMap({ data, onCountryClick, height = 520 }: Props) {
 
     const byCountry = new Map<
       string,
-      { name: string; value: number; coords: Lnglat }
+      { name: string; value: number; coords: Lnglat; raws: string[] }
     >();
 
-    const contribute = (rawName: string, value: number): boolean => {
-      const c = lookupCentroid(rawName, centroids);
+    const contribute = (
+      lookupName: string,
+      value: number,
+      sourceName: string,
+    ): boolean => {
+      const c = lookupCentroid(lookupName, centroids);
       if (!c) return false;
       const existing = byCountry.get(c.name);
-      if (existing) existing.value += value;
-      else byCountry.set(c.name, { name: c.name, value, coords: c.coords });
+      if (existing) {
+        existing.value += value;
+        if (!existing.raws.includes(sourceName))
+          existing.raws.push(sourceName);
+      } else {
+        byCountry.set(c.name, {
+          name: c.name,
+          value,
+          coords: c.coords,
+          raws: [sourceName],
+        });
+      }
       return true;
     };
 
     for (const d of data) {
-      if (contribute(d.name, d.value)) continue;
+      if (contribute(d.name, d.value, d.name)) continue;
       const parts = splitMultiCountry(d.name);
       if (parts.length === 1) continue;
-      for (const part of parts) contribute(part, d.value);
+      for (const part of parts) contribute(part, d.value, d.name);
     }
 
     const aggregated = Array.from(byCountry.values());
     const max = aggregated.reduce((m, d) => Math.max(m, d.value), 1);
-    return aggregated.map(({ name, value, coords }) => ({
+    return aggregated.map(({ name, value, coords, raws }) => ({
       name,
       value,
       coords,
+      raws,
       baseR: Math.max(3, Math.sqrt(value / max) * 12),
     }));
   }, [data, centroids]);
@@ -128,6 +143,20 @@ export function PlantOriginMap({ data, onCountryClick, height = 520 }: Props) {
       return countryValueMap.get(c.name.toLowerCase());
     }
     return undefined;
+  };
+
+  // Raw database spellings behind a display marker, so clicks
+  // filter the rows the marker aggregates instead of the atlas name.
+  const getMarkerRaws = (name: string): string[] => {
+    const lower = name.toLowerCase();
+    const direct = markers.find((m) => m.name.toLowerCase() === lower);
+    if (direct) return direct.raws;
+    const c = lookupCentroid(name, centroids);
+    if (c) {
+      const hit = markers.find((m) => m.name === c.name);
+      if (hit) return hit.raws;
+    }
+    return [name];
   };
 
   // Repositions tooltip directly via transform matrix to avoid re-renders.
@@ -197,7 +226,8 @@ export function PlantOriginMap({ data, onCountryClick, height = 520 }: Props) {
                     }}
                     onClick={() => {
                       const name = g.properties?.name;
-                      if (name && onCountryClick) onCountryClick(name);
+                      if (name && onCountryClick)
+                        onCountryClick(name, getMarkerRaws(name));
                     }}
                   />
                 ))
@@ -230,7 +260,7 @@ export function PlantOriginMap({ data, onCountryClick, height = 520 }: Props) {
                   }
                 }, 25);
               }}
-              onClick={() => onCountryClick?.(m.name)}
+              onClick={() => onCountryClick?.(m.name, m.raws)}
             >
               {/* Concentric pulse ripples indicating collection volume. */}
               {[0, 0.7, 1.4].map((beginSec, k) => (

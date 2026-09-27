@@ -42,7 +42,7 @@ export interface DrawerFilter {
     | 'entities'
     | 'journals';
   label: string;
-  value?: string;
+  value?: string | string[];
 }
 
 interface Props {
@@ -163,9 +163,12 @@ const DatabaseExplorerDrawer: React.FC<Props> = ({
 
     const country =
       activeFilter?.kind === 'country' ? activeFilter.value : undefined;
-    const year = activeFilter?.kind === 'year' ? activeFilter.value : undefined;
+    const year =
+      activeFilter?.kind === 'year' && typeof activeFilter.value === 'string'
+        ? activeFilter.value
+        : undefined;
     const apiQuery =
-      activeFilter?.kind === 'papers'
+      activeFilter?.kind === 'papers' && typeof activeFilter.value === 'string'
         ? activeFilter.value
         : debouncedQuery || undefined;
 
@@ -198,9 +201,12 @@ const DatabaseExplorerDrawer: React.FC<Props> = ({
     if (!papers) return;
     const country =
       activeFilter?.kind === 'country' ? activeFilter.value : undefined;
-    const year = activeFilter?.kind === 'year' ? activeFilter.value : undefined;
+    const year =
+      activeFilter?.kind === 'year' && typeof activeFilter.value === 'string'
+        ? activeFilter.value
+        : undefined;
     const apiQuery =
-      activeFilter?.kind === 'papers'
+      activeFilter?.kind === 'papers' && typeof activeFilter.value === 'string'
         ? activeFilter.value
         : debouncedQuery || undefined;
 
@@ -503,7 +509,7 @@ const DatabaseExplorerDrawer: React.FC<Props> = ({
               >
                 <span>
                   {activeFilter.kind === 'country'
-                    ? `Country: ${activeFilter.value}`
+                    ? `Country: ${Array.isArray(activeFilter.value) ? activeFilter.value.join(', ') : activeFilter.value}`
                     : `Year: ${activeFilter.value}`}
                 </span>
                 <X
@@ -874,7 +880,9 @@ function EntitiesList({
   filter: DrawerFilter | null;
 }) {
   const filterValue =
-    filter?.kind === 'entity' ? filter.value?.toLowerCase() : null;
+    filter?.kind === 'entity' && typeof filter.value === 'string'
+      ? filter.value.toLowerCase()
+      : null;
   if (entities.length === 0) {
     return (
       <div

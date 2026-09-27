@@ -304,13 +304,13 @@ const Dashboard: React.FC = () => {
             <ChartCard title="Geographic distribution of bioactive species collection sites">
               <PlantOriginMap
                 data={metrics.charts.geo_distribution}
-                onCountryClick={(name) =>
+                onCountryClick={(name, raws) =>
                   openDrawer({
                     tab: 'papers',
                     filter: {
                       kind: 'country',
                       label: `Origin: ${name}`,
-                      value: name,
+                      value: raws.length ? raws : [name],
                     },
                   })
                 }

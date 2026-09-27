@@ -271,7 +271,7 @@ async def proxy_pdf(url: str = Query(...)):
 async def list_papers(
     limit: int = Query(50, ge=1, le=500),
     offset: int = Query(0, ge=0),
-    country: str = Query(None),
+    country: list[str] | None = Query(default=None),
     query: str = Query(None),
     year: int = Query(None),
     db: AsyncSession = Depends(get_db),

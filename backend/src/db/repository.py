@@ -154,7 +154,7 @@ async def list_papers(
     *,
     limit: int,
     offset: int,
-    country: str | None,
+    country: list[str] | str | None,
     query: str | None,
     year: int | None,
 ) -> tuple[int, list[dict[str, Any]]]:
@@ -167,11 +167,18 @@ async def list_papers(
     select_stmt = select(Paper)
 
     if country:
+        names = [country] if isinstance(country, str) else list(country)
+    else:
+        names = []
+    wanted = [name.lower() for name in names if name]
+    if wanted:
+        # Case-insensitive list match: map markers aggregate alias
+        # spellings, so clicks arrive as variant lists.
         country_expr = func.json_extract(PaperEntity.meta, "$.country")
         select_stmt = (
             select_stmt.join(PaperEntity)
             .where(PaperEntity.label == "LOCATION")
-            .where(country_expr == country)
+            .where(func.lower(country_expr).in_(wanted))
         )
 
     if query:
